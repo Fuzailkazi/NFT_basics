@@ -1,12 +1,18 @@
 require("@nomicfoundation/hardhat-toolbox");
-require("dotenv");
+require("@nomiclabs/hardhat-ethers");
+require("dotenv").config();
 /** @type import('hardhat/config').HardhatUserConfig */
+
+const { ALCHEMY_URL, WALLET_PRIVATE_KEY } = process.env;
+
 module.exports = {
   solidity: "0.8.18",
+  defaultNetwork: "sepolia",
   networks: {
+    hardhat: {},
     sepolia: {
-      url: process.env.ALCHEMY_URL,
-      accounts: [process.env.WALLET_PRIVATE_KEY],
+      url: ALCHEMY_URL,
+      accounts: [WALLET_PRIVATE_KEY],
     },
   },
 };
